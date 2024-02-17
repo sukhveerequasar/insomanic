@@ -1,0 +1,153 @@
+/* src/styles.css */
+/* styles.css */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url('../assets/images/event.png');
+  background-size: cover; /* Adjust as needed */
+  background-position: center; 
+  filter: blur(10px);
+}
+
+.full-screen-background {
+  /* background-color:grey; */
+  height: 100vh; /* 100% of the viewport height */
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+
+.event-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  /* background-color:grey; */
+  margin-top: 30px;
+}
+
+.event-card {
+  width: 239px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  background-color: black;
+  /* margin-top: 50px; */
+  /* margin: 16px; */
+
+}
+.listvenue{
+  margin-left: 60px;
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+}
+
+.event-image {
+  width: 100%;
+    height: 246px;
+    object-fit: cover;
+    background-color: #352121;
+}
+
+.event-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  color: white;
+}
+
+.event-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.event-album {
+  color: #ffac00;
+  font-size: 18px;
+  font-weight: bold;
+}
+/* Custom CSS - You can include this directly in your JSX or in a separate CSS file if using external styles */
+
+.full-width-container {
+  width: 100vw; /* 100% of the viewport width */
+}
+
+.full-screen-background {
+ 
+  min-height: 100vh; 
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+.text-num{
+  color: white;
+  text-align: end;
+    margin-right: 30px;
+    font-size: 18px;
+  font-weight: bold;
+}
+.text-number{
+  text-align: end;
+}
+.main-container{
+background-color: aquamarine;
+}
+.custom-timepicker .react-time-picker-dropdown-icon {
+  fill: grey; / Icon color /
+}
+
+.custom-timepicker .react-time-picker-dropdown-clock {
+  color: grey; / Clock color /
+}
+
+.custom-timepicker .react-time-picker-dropdown-clock-selected {
+color: rgb(181, 20, 20); /*Selected time color*/
+}
+
+input.tp_inputBox{
+  color: white !important; /*Selected time color */
+}
+
+.custom-timepicker-wrapper {
+  position: relative;
+}
+ .custom-timepicker {
+  width: 300px;}
+
+
+
+.custom-timepicker .react-time-picker__inputGroup__hour {
+  width: 80px !important;
+}
+
+.custom-timepicker .react-time-picker__inputGroup__minute {
+  width: 80px !important;
+}
+.custom-timepicker .rc-time-picker-panel-input-wrap {
+  border: none;
+}
+
+.custom-timepicker .rc-time-picker-input {
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+.custom-timepicker .rc-time-picker-clear {
+  color: white;
+}
+
+
+
+
+  
