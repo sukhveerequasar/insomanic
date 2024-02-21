@@ -1,4 +1,4 @@
-
+/* 
 body{
 
   width: 100%;
@@ -58,7 +58,7 @@ h1 {
   color: #333; 
 }
 .event-image {
-  /* width: 400px; */
+  
   width: 336px;
   margin-left: 18px;
   height: 100%;
@@ -203,7 +203,7 @@ h1 {
   color: white;
 }
 input, optgroup, select, textarea {
-  /* font-family: inherit; */
+
   font-feature-settings: inherit;
   font-variation-settings: inherit;
   font-size: 100%;
@@ -338,7 +338,7 @@ input.tp_inputBox{
   color: white;
   border: none;
   height:40px;
-  /* border: 2px solid black; */
+
   background-color: transparent;
   border: 2px solid #a29d9d;
   margin-top: 0;
@@ -361,16 +361,15 @@ input#dob {
 .custom-guest {
   background-color: transparent;
   border: 2px solid #a29d9d;
-  /* border-radius: 10px; */
-  /* color: darkgray; */
+
 }
 button.w-full.bg-blue.hover\:bg-blue-dark.text-white.font-bold.py-2.px-4.rounded {
-  /* background-color: cornflowerblue; */
+  
   margin-top: 20px;
   width: 100%;
   border-radius: 10px;
   margin-bottom: 50px;
-  /* color: darkgrey; */
+
 }
 
 .evet_block .mt-2{
@@ -410,9 +409,9 @@ button.w-full.bg-blue.hover\:bg-blue-dark.text-white.font-bold.py-2.px-4.rounded
   text-align: center;
 }
 .highlight-input {
-  border: 2px solid darkgrey;/* Green color for border */
+  border: 2px solid darkgrey;
   background-color: blue!important;
-  /* Add any other styling for highlighting */
+  
   
 }
 
@@ -450,23 +449,15 @@ button.w-full.bg-blue.hover\:bg-blue-dark.text-white.font-bold.py-2.px-4.rounded
 .main_ttile h2 {
     color: #fff;
 }
-/* 
-.leaflet-container{
-  z-index: -100;
-} */
+
 .leaflet-container {
-  z-index: 0; /* Set a positive z-index for the map */
+  z-index: 0; 
 }
 
-/* For the datepicker container */
- /* Set a higher z-index for the datepicker */
-/* .react-datepicker-wrapper {
-  z-index: 1;
-} */
 
 .text-date{
   background: transparent;
-    /* color: darkgray; */
+ 
     border-color: darkgrey;
     margin: 6px 25px;
 }
@@ -476,8 +467,7 @@ button.w-full.bg-blue.hover\:bg-blue-dark.text-white.font-bold.py-2.px-4.rounded
 
 }
 .view-all{
-  width: 124px;
-  /* background-color: #cf7526; */
+  
   background-color: blue !important;
   border-radius: 20px;
 }
@@ -500,7 +490,7 @@ select option[value="1"] {
   width: 49% !important;
 }
 .react-datepicker__triangle {
-  display: none !important; /* Hide the triangle element */
+  display: none !important; 
 }
 
 
@@ -510,16 +500,16 @@ select option[value="1"] {
   border-radius: 0;
   margin-top: 0;
 }
-.top_frm_bar::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.top_frm_bar::-webkit-input-placeholder { 
   color: #fff;
 }
-.top_frm_bar::-moz-placeholder { /* Firefox 19+ */
+.top_frm_bar::-moz-placeholder { 
   color: #fff;
 }
-.top_frm_bar:-ms-input-placeholder { /* IE 10+ */
+.top_frm_bar:-ms-input-placeholder { 
   color: #fff;
 }
-.top_frm_bar:-moz-placeholder { /* Firefox 18- */
+.top_frm_bar:-moz-placeholder { 
   color: #fff;
 }
 ::-webkit-calendar-picker-indicator {
@@ -539,12 +529,12 @@ select option[value="1"] {
 }
 .cursor-pointer{
   color: white;
-  border: 2px solid #ccc; /* Grey border */
+  border: 2px solid #ccc; 
   padding: 6px;
 }
 .map-container {
-  height: 100vh; /* Set height to fill viewport vertically */
-  width: 100vw; /* Set width to fill viewport horizontally */
+  height: 100vh; 
+  width: 100vw; 
 }
 .event-main-upcoming{
   width: 850px !important;
@@ -564,8 +554,132 @@ select option[value="1"] {
   border: 6px solid white;
 }
 @media (max-width: 768px) {
-  /* Add responsive styles here */
+  
   .container {
-    width: 100%; /* Adjust as needed */
+    width: 100%; 
   }
+} */
+
+/* / EVENTS PAGE CSS / */
+body{
+
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/backgroound.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+#evnet_page_main{
+  margin: 10% 0;
+}
+
+#evnet_page_main h1{
+  font-family: "Bebas Neue", sans-serif;
+  color: #fff;
+  font-size: 55px;
+  line-height: 1em;
+  letter-spacing: 1.32px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px #ff4e5b, 0 0 15px rgba(255,78,91,0.52);
+}
+
+#evnet_page_main p{
+  font-size: 14px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 80px;
+}
+
+.events .event a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.events .event {
+  margin: 40px 0 0;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.events .event {
+  margin: 40px 0 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.events .event tbody tr:hover {
+  background-color: rgba(255, 44, 85, 0.82);
+  border: 2px solid #fff;
+}
+
+.events .event thead tr {
+  background-color: rgba(102,102,102,0.32);
+  color: #ffffff;
+}
+
+.events .event thead tr td {
+  border: none;
+  padding: 20px 30px;
+  vertical-align: middle;
+}
+
+.events .event tbody tr {
+  background-color: rgba(102,102,102,0.32);
+  color: #ffffff;
+  transition: all .2s ease-in-out;
+  border: 1px solid transparent;
+}
+
+.events .event thead tr.space {
+  background-color: transparent;
+  height: 15px;
+}
+
+.events .event tr.space td {
+  padding: 0 !important;
+  line-height: 0 !important;
+  background: transparent !important;
+  height: 0px !important;
+  display: block !important;
+}
+
+.events .event tbody tr.space {
+  background-color: transparent;
+  height: 10px;
+}
+
+.events .event tr td {
+  border: none;
+  padding: 10px 30px;
+  vertical-align: middle;
+}
+
+.events .event tbody tr td.event-ticket-link a {
+  padding: 10px 15px;
+  border: 1px solid #fff;
+  border-radius: 0px;
+  font-size: 14px;
+  color: #ffffff;
+  border-color: #ffffff;
+  background: #673AB7;
+}
+
+.events .event tbody tr td.event-ticket-link span.sold {
+  display: inline-block;
+  margin: 0;
+  border: 1px solid #fff;
+  background-color: #333333;
+  color: #fff;
+  padding: 5px 15px;
+  font-size: 14px;
+  width: 119px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.event-mobile {
+  display: none;
 }
