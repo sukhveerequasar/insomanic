@@ -552,13 +552,7 @@ select option[value="1"] {
 }
 .upcoming-img{
   border: 6px solid white;
-}
-@media (max-width: 768px) {
-  
-  .container {
-    width: 100%; 
-  }
-} */
+}  */
 
 /* / EVENTS PAGE CSS / */
 body{
@@ -570,9 +564,18 @@ body{
   background-attachment: fixed;
   background-position: center;
 }
+.date-birth{
+  width: 49% !important;
+}
+.custom-input {
+  background-color: transparent;
+  border: 2px solid #a29d9d;
+}
+
 #evnet_page_main{
   margin: 10% 0;
 }
+
 
 #evnet_page_main h1{
   font-family: "Bebas Neue", sans-serif;
@@ -590,6 +593,7 @@ body{
   font-family: "Poppins", sans-serif;
   margin-bottom: 80px;
 }
+
 
 .events .event a{
   color: #fff;
@@ -682,4 +686,59 @@ body{
 
 .event-mobile {
   display: none;
+}
+/* / Book Event Form / */
+
+#evnet_booking {
+  width: 100%;
+  float: left;
+  margin: 10% 0px;
+}
+
+
+@media screen and (max-width: 480px) {
+  .events_box{
+    display: none;
+  }
+  .event-mobile {
+    position: relative;
+    display: block;
+  }
+  .event-mobile ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  .event-mobile ul li {
+    background-color: rgba(62, 62, 62, .6);
+    margin-bottom: 30px;
+    padding: 30px 0px;
+  }
+  .event-mobile ul .img-thumb {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .event-mobile ul li a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .event-mobile ul li p {
+    margin-bottom: 0!important;
+    font-weight: bold;
+    font-size: 15px!important;
+  }
+  .img-thumb img{
+    width: 100%;
+  }
+  .event-mobile ul li a.button-basic-1 {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 13px 30px;
+    border-radius: 0px;
+    border: 1px solid #fff;
+    font-size: 15px;
+    color: #ffffff;
+    border-color: #ffffff;
+    width: 220px;
+  }
 }

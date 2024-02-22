@@ -25,9 +25,9 @@ const Dob = ({ dob, onChange, placeholder }) => {
   selectsStart
   showMonthDropdown
   showYearDropdown
-  placeholderText={placeholder}
+  placeholderText='' // Remove the placeholder
   dateFormat="yyyy-MM-dd"
-  className="input custom-input font-roboto date-birth"
+  className="input  date-birth block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
   showTimeInput={false}
   popperClassName="light-popper"
   utcOffset={new Date().getTimezoneOffset()}
@@ -48,6 +48,8 @@ const Dob = ({ dob, onChange, placeholder }) => {
       enabled: false // Disable the arrow
     }
   }}
+
+
 />
 
   );

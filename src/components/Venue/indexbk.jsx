@@ -69,13 +69,11 @@ const Venue = () => {
         <p className="block text-xl font-semibold"><span className='month_text'>{moment(item.date_from).format('MMMM')}</span>
           {moment(item.date_from).format('D')}  
   </p>
-  {/* <span className="block text_right"></span> */}
+ 
  
 </div>
 
-        {/* <p className="text-gray-700 event-label">Time: {item.time_from} - {item.time_to}</p>
-        <p className="text-gray-700 event-label">Organizer: {item.event_organiser}</p>
-        <p className="text-gray-700 event-label">Description: {item.event_desc}</p> */}
+        
       </div>
     </Link>
   ))}
