@@ -12,6 +12,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import StripeButton from './components/StripeButton';
 import PaymentForm from './components/PaymentForm';
+import PastEvent from './components/PastEvent';
+
 
 const stripePromise = loadStripe('pk_test_51OeEfISBso2Dz2oFXsDTdixcoul4HkcrIRrfilFX5c7FKnq5eURTArDEwT4IDctoo6x3DP71KgFiw1VIXyjZaTzV00E5b3S0ij');
 
@@ -25,6 +27,7 @@ const App = () => {
         <Route path="/venue/:venueId" element={<Venue />} />
         <Route path="/event/:id" element={<EventDetails />} />
         <Route path="/event" element={<Event />} />
+        <Route path="/pastevent" element={<PastEvent />} />
         <Route path="/venuepage" element={<VenuePage />} />
         <Route
           path="/checkout"

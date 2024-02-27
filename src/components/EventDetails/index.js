@@ -21,7 +21,6 @@ import DOB from "../Dob";
 
     const EventDetails = () => {
         const navigate = useNavigate()
-       
         const [mySection, setMySection] = useState(null);
         const { id } = useParams();
         const [numberOfEvents, setNumberOfEvents] = useState(null);
@@ -42,10 +41,6 @@ import DOB from "../Dob";
         const [selectedDate, setSelectedDate] = useState(new Date());
         const [selectedOption, setSelectedOption] = useState('');
         const [showTextarea, setShowTextarea] = useState(false);
-        
-    
-      
-    
         //handleButtonClick redirect  venue page
         const handleButtonClick = () => {
           navigate(`/venue/${venueId}`);
@@ -69,17 +64,7 @@ import DOB from "../Dob";
         });
     
        
-        const handleFocus = (event) => {
-            if (!event.target.value) {
-                event.target.type = 'date';
-            }
-        };
-        
-        const handleBlur = (event) => {
-            if (!event.target.value) {
-                event.target.type = 'text';
-            }
-        };
+       
         const [arrivalTime, setArrivalTime] = useState(null);
     
         const handleTimeChange = (value) => {
@@ -107,33 +92,17 @@ import DOB from "../Dob";
             // return dateString.trim() !== '';
     
         };
-        // function handleSelectChange(event) {
-        //     const selectedValue = event.target.value;
-        //     const textarea = document.getElementById('booking_note_textarea');
-        //     if (selectedValue === 'other') {
-        //         textarea.style.display = 'block';
-        //     } else {
-        //         textarea.style.display = 'none';
-        //     }
-        // }
+     
         function handleSelectChange(event) {
           const selectedValue = event.target.value;
           setSelectedOption(selectedValue);
           setShowTextarea(selectedValue === 'other');
       }
-  
-        
-        
-        
-
-      
-        
-    
         const isValidFormData = () => {
             // Implement your validation logic here
             return true; // For demonstration, always return true
         };
-    
+     
         const handleSubmit = async (e) => {
             e.preventDefault();
     
@@ -189,7 +158,7 @@ import DOB from "../Dob";
                 window.location.reload();
             }, 3000); // Adjust the time according to your needs
         };
-    
+       
     
     
         useEffect(() => {
@@ -267,6 +236,7 @@ import DOB from "../Dob";
     <div id="evnet_booking">
     <div className="md:container md:mx-auto">
       <div className="relative p-4 bg-color rounded-lg shadow dark:bg-gray-800 sm:p-5">
+    
         <div className="grid grid-cols-2 gap-4">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
@@ -278,13 +248,36 @@ import DOB from "../Dob";
             </div>
           </div>
           <div className="container mx-auto px-4">
-            <form class="max-w-4xl mx-auto">
+          <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-2 md:gap-6">
+              <div class="relative z-10 w-full mb-5 group">
+                <div className=".w-full"> 
+              <DatePicker />
+              </div>
+             
+              </div>
+              <div class="relative z-0 w-full mb-5 group table-section">
+              <button
+                className="input block w-full placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-white-300 sm:text-sm sm:leading-6 border-2 border-gray-700 rounded-md px-4 py-2 text-gray-700 dark:text-gray-400"
+                onClick={handleClick}
+              >
+                Table Selection
+              </button>
+              {isModalOpen && (
+                <ViewLayout
+                  isOpen={isModalOpen}
+                  onRequestClose={closeModal}
+                />
+              )}
+             </div>
+              </div>
+          </div>
+            <form class="max-w-4xl mx-auto" onSubmit={handleSubmit}>
               <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="relative z-0 w-full mb-5 group">
                   <input
                     name="Preffered Section"
-                  
-                    id="floating_email section"
+                    id="section"
                     className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer ${
                       mySection ? "highlight-input" : ""
                     }`}
@@ -292,7 +285,7 @@ import DOB from "../Dob";
                     value={mySection || ""}
                   />
                   <label
-                    for="floating_email section"
+                    for="section"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Preffered Section
@@ -301,15 +294,17 @@ import DOB from "../Dob";
                 <div class="relative z-0 w-full mb-5 group">
               
                   <TimePicker
-                    id="floating_password arrival_time"
+                    // id="floating_password arrival_time"
+                    id="arrival_time"
                     className="block py-1.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     onChange={handleTimeChange}
                     value={arrivalTime}
+                    
                     format="hh:mm a"
                     placeholder="HH:mm AM/PM"
                   />
                   <label
-                    for="floating_password arrival_time"
+                    for="arrival_time"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Estimated Time of Arrival
@@ -320,14 +315,17 @@ import DOB from "../Dob";
                 <div class="relative z-0 w-full mb-5 group">
                   <input
                     type="text"
-                    name="floating_first_name first_name"
-                    id="floating_first_name first_name"
+                    // name="floating_first_name first_name"
+                    // name="first_name"
+                   
+                    id="first_name"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
+                   
                   />
                   <label
-                    for="floating_first_name first_name"
+                    for="first_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     First name
@@ -336,14 +334,15 @@ import DOB from "../Dob";
                 <div class="relative z-0 w-full mb-5 group">
                   <input
                     type="text"
-                    name="floating_last_name last_name"
-                    id="floating_last_name last_name"
+                    // name="last_name"
+                    id="last_name"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
+                    
                   />
                   <label
-                    for="floating_last_name last_name"
+                    for="last_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Last name
@@ -354,15 +353,15 @@ import DOB from "../Dob";
                 <div class="relative z-0 w-full mb-5 group">
                   <input
                     type="tel"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    name="floating_phone phone"
-                    id="floating_phone phone"
+                    pattern="[0-9]{10}"
+                    id="phone"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
+                    
                   />
                   <label
-                    for="floating_phone phone"
+                    for="phone"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Phone Number
@@ -371,14 +370,15 @@ import DOB from "../Dob";
                 <div class="relative z-0 w-full mb-5 group">
                   <input
                     type="email"
-                    name="floating_company email"
-                    id="floating_company email"
+                    // name="email"
+                    id="email"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
+                   
                   />
                   <label
-                    for="floating_company email"
+                    for="email"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Email
@@ -389,7 +389,7 @@ import DOB from "../Dob";
              
                 <div className="relative z-10 w-full mb-5 group">
                   <label
-                    htmlFor="floating_company dob_input"
+                    htmlFor="dob"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Date of Birth
@@ -398,6 +398,7 @@ import DOB from "../Dob";
                     onChange={handleDobChange}
                     utcOffset={new Date().getTimezoneOffset()}
                     placeholder=""
+                    // value={formData.dob}
                   />
                 </div>
             
@@ -406,21 +407,22 @@ import DOB from "../Dob";
                   {showTextarea ? (
                     <textarea
                       rows="8"
-                      name="booking_note_textarea"
+                      // name="booking_note_textarea"
                       id="booking_note_textarea"
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
-                      required
+                      // required
                     ></textarea>
                   ) : (
                     <select
                       id="booking_note_select"
-                      name="booking_note"
+                      // name="booking_note"
                       className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       onChange={handleSelectChange}
-                      value={selectedOption}
+                      value={formData.selectedOption}
+                    
                     >
-                      <option value="" disabled>
+                      <option value="select" >
                         Select a booking note
                       </option>
                       <option value="birthday">Birthday Celebration</option>
@@ -433,7 +435,7 @@ import DOB from "../Dob";
                   {
                     <label
                     
-                      for="floating_company booking_note"
+                      for="booking_note"
                       class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Booking Note:
@@ -444,14 +446,15 @@ import DOB from "../Dob";
               <div class="relative z-0 w-full mb-5 group">
                 <input
                   type="number"
-                  name="floating_company"
-                  id="floating_company"
+                  // name="no_of_seats"
+                  id="no_of_seats"
                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
+                
                 />
                 <label
-                  for="floating_company"
+                  for="no_of_seats"
                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Total Guests:
@@ -468,6 +471,7 @@ import DOB from "../Dob";
             <ToastContainer />
           </div>
         </div>
+
       </div>
         {/* //////////////////////// */}
     <div id="evnet_page_main">
@@ -482,7 +486,7 @@ import DOB from "../Dob";
                       View All
                     </button>
                   </div>
-            <UpcomingEvents venueId={venueId} />
+                  <UpcomingEvents venueId={venueId} />
       {/* </div> */}
   </div>
     </div>
