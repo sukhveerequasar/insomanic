@@ -257,6 +257,7 @@ return (
         border: 'none',
         padding: 0,
         maxHeight: '100vh',
+        zIndex: 0,
       },
     }}
   >
@@ -272,6 +273,7 @@ return (
         style={{ border: '1px solid #ccc' }}
         onMouseMove={handleMouseMove}
         onClick={handleCanvasClick}
+        className='convasdata'
       ></canvas>
     )}
   </Modal>

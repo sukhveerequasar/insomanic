@@ -1,3 +1,164 @@
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import moment from 'moment';
+// // import { useParams } from 'react-router-dom';
+// import { useParams, useNavigate,Link  } from 'react-router-dom';
+// import '../Custom.css'; 
+// import Loader from "react-js-loader";
+
+// export default function Index() {
+//     const [eventList, setEventList] = useState([]);
+//     const [loading, setLoading] = useState(true);
+//     const [error, setError] = useState(null);
+//     const navigate = useNavigate();
+//     const { venueId } = useParams();
+  
+   
+//     useEffect(() => {
+//       console.log('Fetching data for venueId:', venueId);
+//       const fetchData = async () => {
+//         try {
+//           // Encode the venueId parameter
+//           const encodedVenueId = encodeURIComponent(venueId);
+  
+//           // Make the API request using the encoded venueId
+//           const response = await axios.get(`https://event-backend.isdemo.in/api/v1/event?venue_id=${venueId}`);
+//           console.log('API Response:', response.data);
+  
+//           setEventList(response.data.data);
+//         } catch (error) {
+//           console.error('Error fetching data:', error);
+//           setError('Error fetching data. Please try again.');
+//         } finally {
+//           setLoading(false);
+//         }
+//       };
+  
+//       fetchData();
+//     }, [venueId]);
+  
+//     if (loading) {
+//       // Show loader while loading is true
+//       return <Loader type="spinner-cub" bgColor={'white'} color={'white'} size={100} />;
+//     }
+//   return (
+//     <div id="evnet_page_main">
+//   <div className="container mx-auto px-4">
+//     <h1 class="text-center"> Events List</h1>
+//     <p class="text-center">
+//       Your time is limited, don’t waste it living someone else’s life. Don’t be
+//       trapped by dogma, which is living the result of other people’s thinking.{" "}
+//       <br />
+//       Don’t let the noise of other opinions drown your own inner voice.
+//     </p>
+//   </div>
+//   <div className="container mx-auto px-4">
+//     <div className="events_box">
+//       <div className="events">
+//         <table class="event">
+//           <thead>
+//             <tr>
+//               <td>Date</td>
+//               <td class="event-thumb-head"></td>
+//               <td>Artist</td>
+//               <td>Event</td>
+//               <td>Ticket</td>
+//             </tr>
+//             <tr class="space">
+//               <td>&nbsp;</td>
+//             </tr>
+//           </thead>
+
+//           <tbody>
+//             {eventList.map((item, index) => (
+//               <React.Fragment key={index}>
+//                 <tr>
+//                   <td className="event-date">
+//                     {moment(item.date).format("DD/MM/YYYY")}
+//                   </td>
+//                   <td className="event-thumb">
+//                     <Link to={`/event/${item.id}`}>
+//                       <img
+//                         width="90px"
+//                         height="100px"
+//                         src={item.featured_image}
+//                         alt="Event"
+//                       />
+//                     </Link>
+//                   </td>
+//                   <td className="event-artist">{item.name}</td>
+//                   <td className="event-title">
+//                     <Link to={`/event/${item.id}`}>{item.name}</Link>
+//                   </td>
+//                   <td className="event-ticket-link">
+//                     {item.ticket_status === "available" ? (
+//                       <Link
+//                         to={`/book/${item.id}`}
+//                         className="button button-white rsvp"
+//                       >
+//                         BOOK
+//                       </Link>
+//                     ) : (
+//                       <span className="sold">EXPIRED</span>
+//                     )}
+//                   </td>
+//                 </tr>
+//                 <tr className="space h-10">
+//                   <td colSpan="5"></td>
+//                 </tr>
+//               </React.Fragment>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//     <div class="event-mobile">
+//       <ul className="event-list">
+//         {eventList.map((item, index) => (
+//           <li key={index}>
+//             <span className="img-thumb">
+//               <a href={`/event/${item.id}`}>
+//                 <img
+//                   width="70px"
+//                   height="100px"
+//                   src={item.featured_image}
+//                   alt="Event"
+//                 />
+//               </a>
+//             </span>
+//             <p>
+//               <span>Date :</span>{" "}
+//               <a href={`/event/${item.id}`}>
+//                 {moment(item.date).format("DD/MM/YYYY")}
+//               </a>
+//             </p>
+//             <p>
+//               <span>Artist :</span>{" "}
+//               <a href={`/event/${item.id}`}>{item.name}</a>
+//             </p>
+//             <p>
+//               <span>Event :</span> <a href={`/event/${item.id}`}>{item.name}</a>
+//             </p>
+//             <p>
+//               {item.ticket_status === "available" ? (
+//                 <a href={`/book/${item.id}`} className="button-basic-1">
+//                   BUY TICKET
+//                 </a>
+//               ) : (
+//                 <span className="sold">TICKET SOLD OUT</span>
+//               )}
+//             </p>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   </div>
+// </div>
+
+//   )
+// }
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
@@ -6,154 +167,194 @@ import { useParams, useNavigate,Link  } from 'react-router-dom';
 import '../Custom.css'; 
 import Loader from "react-js-loader";
 
-export default function Index() {
-    const [eventList, setEventList] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
-    const { venueId } = useParams();
-  
-   
-    useEffect(() => {
-      console.log('Fetching data for venueId:', venueId);
-      const fetchData = async () => {
-        try {
-          // Encode the venueId parameter
-          const encodedVenueId = encodeURIComponent(venueId);
-  
-          // Make the API request using the encoded venueId
-          const response = await axios.get(`https://event-backend.isdemo.in/api/v1/event?venue_id=${venueId}`);
-          console.log('API Response:', response.data);
-  
-          setEventList(response.data.data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-          setError('Error fetching data. Please try again.');
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchData();
-    }, [venueId]);
-  
-    if (loading) {
-      // Show loader while loading is true
-      return <Loader type="spinner-cub" bgColor={'white'} color={'white'} size={100} />;
-    }
-  return (
-    <div id="evnet_page_main">
-  <div className="container mx-auto px-4">
-    <h1 class="text-center"> Events List</h1>
-    <p class="text-center">
-      Your time is limited, don’t waste it living someone else’s life. Don’t be
-      trapped by dogma, which is living the result of other people’s thinking.{" "}
-      <br />
-      Don’t let the noise of other opinions drown your own inner voice.
-    </p>
-  </div>
-  <div className="container mx-auto px-4">
-    <div className="events_box">
-      <div className="events">
-        <table class="event">
-          <thead>
-            <tr>
-              <td>Date</td>
-              <td class="event-thumb-head"></td>
-              <td>Artist</td>
-              <td>Event</td>
-              <td>Ticket</td>
-            </tr>
-            <tr class="space">
-              <td>&nbsp;</td>
-            </tr>
-          </thead>
+const Venue = () => {
+  const [eventList, setEventList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { venueId } = useParams();
+  const [vid,setVid]=useState("")
 
-          <tbody>
-            {eventList.map((item, index) => (
-              <React.Fragment key={index}>
-                <tr>
-                  <td className="event-date">
-                    {moment(item.date).format("DD/MM/YYYY")}
-                  </td>
-                  <td className="event-thumb">
-                    <Link to={`/event/${item.id}`}>
+ 
+  useEffect(() => {
+    console.log('Fetching data for venueId:', venueId);
+    const fetchData = async () => {
+      try {
+        // Encode the venueId parameter
+        const encodedVenueId = encodeURIComponent(venueId);
+
+        console.log(venueId,"id incoming is===>>")
+        if(!venueId || venueId === "null" || venueId === "undefined"){
+          setVid("25")
+        }
+        else{
+          setVid(venueId)
+        }
+
+
+        console.log(vid,"tesing ===>>")
+
+        // Make the API request using the encoded venueId
+        const response = await axios.get(`https://event-backend.isdemo.in/api/v1/event?venue_id=${vid}`);
+        console.log('API Response:', response.data);
+
+        setEventList(response.data.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError('Error fetching data. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, );
+
+  if (loading) {
+    // Show loader while loading is true
+    return <Loader type="spinner-cub" bgColor={'white'} color={'white'} size={100} />;
+  }
+    return (
+      <div id="evnet_page_main">
+        <div className="container mx-auto px-4">
+          <h1 className="text-center"> Events List</h1>
+          <p className="text-center">
+            Your time is limited, don’t waste it living someone else’s life. Don’t be
+            trapped by dogma, which is living the result of other people’s thinking.{" "}
+            <br />
+            Don’t let the noise of other opinions drown your own inner voice.
+          </p>
+          <div className="flex justify-end mt-10">
+  <button
+    className="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full current-event"
+    type="button"
+  >
+    <a href="/pastevent" className='current-event'>Past Event</a>
+  </button>
+</div>
+        </div>
+        <div className="container mx-auto px-4">
+          <div className="events_box">
+            <div className="events">
+              <table className="event">
+                <thead>
+                  <tr>
+                    <td>Date</td>
+                    <td className="event-thumb-head">Event Image</td>
+                    {/* <td>Artist</td> */}
+                    <td>Event</td>
+                    <td>Ticket</td>
+                  </tr>
+                  <tr className="space">
+                    <td>&nbsp;</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {eventList.map((item, index) => (
+                    <React.Fragment key={index}>
+                      <tr>
+                        <td className="event-date">
+                          {moment(item.date_from).format("DD/MM/YYYY")}
+                        </td>
+                        <td className="event-thumb">
+                          <Link to={`/event/${item.id}`}>
+                            <img
+                              width="90px"
+                              height="100px"
+                              src={item.featured_image}
+                              alt="Event"
+                            />
+                          </Link>
+                        </td>
+                        {/* <td className="event-artist">{item.name}</td> */}
+                        <td className="event-title">
+                          <Link to={`/event/${item.id}`}>{item.name}</Link>
+                        </td>
+                        <td className="event-ticket-link">
+                          {item.past ? (
+                            <span className="sold">EXPIRED</span>
+                          ) : (
+                            <Link
+                              to={`/event/${item.id}`}
+                              className="button button-white rsvp"
+                            >
+                              BOOK
+                            </Link>
+                          )}
+                          {item.past && (
+                            <Link
+                              to={`/pastevent/${item.id}`}
+                              className="button button-white rsvp"
+                            >
+                              BOOK
+                            </Link>
+                          )}
+                        </td>
+                      </tr>
+                      <tr className="space h-10">
+                        <td colSpan="5"></td>
+                      </tr>
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="event-mobile">
+            <ul className="event-list">
+              {eventList.map((item, index) => (
+                <li key={index}>
+                  <span className="img-thumb">
+                    <a href={`/event/${item.id}`}>
                       <img
-                        width="90px"
+                        width="70px"
                         height="100px"
                         src={item.featured_image}
                         alt="Event"
                       />
-                    </Link>
-                  </td>
-                  <td className="event-artist">{item.name}</td>
-                  <td className="event-title">
-                    <Link to={`/event/${item.id}`}>{item.name}</Link>
-                  </td>
-                  <td className="event-ticket-link">
-                    {item.ticket_status === "available" ? (
-                      <Link
-                        to={`/book/${item.id}`}
-                        className="button button-white rsvp"
-                      >
-                        BOOK
-                      </Link>
+                    </a>
+                  </span>
+                  <p>
+                    <span>Date :</span>{" "}
+                    <a href={`/event/${item.id}`}>
+                      {moment(item.date_from).format("DD/MM/YYYY")}
+                    </a>
+                  </p>
+                  <p>
+                    <span>Artist :</span>{" "}
+                    <a href={`/event/${item.id}`}>{item.name}</a>
+                  </p>
+                  <p>
+                    <span>Event :</span>{" "}
+                    <a href={`/event/${item.id}`}>{item.name}</a>
+                  </p>
+                  <p>
+                    {item.past ? (
+                      <span>
+                        EXPIRED&nbsp;
+                        <Link
+                          to={`/event/${item.id}`}
+                          className="button-basic-1"
+                        >
+                          BUY TICKET
+                        </Link>
+                      </span>
                     ) : (
-                      <span className="sold">EXPIRED</span>
+                      <Link
+                        to={`/event/${item.id}`}
+                        className="button-basic-1"
+                      >
+                        BUY TICKET
+                      </Link>
                     )}
-                  </td>
-                </tr>
-                <tr className="space h-10">
-                  <td colSpan="5"></td>
-                </tr>
-              </React.Fragment>
-            ))}
-          </tbody>
-        </table>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="event-mobile">
-      <ul className="event-list">
-        {eventList.map((item, index) => (
-          <li key={index}>
-            <span className="img-thumb">
-              <a href={`/event/${item.id}`}>
-                <img
-                  width="70px"
-                  height="100px"
-                  src={item.featured_image}
-                  alt="Event"
-                />
-              </a>
-            </span>
-            <p>
-              <span>Date :</span>{" "}
-              <a href={`/event/${item.id}`}>
-                {moment(item.date).format("DD/MM/YYYY")}
-              </a>
-            </p>
-            <p>
-              <span>Artist :</span>{" "}
-              <a href={`/event/${item.id}`}>{item.name}</a>
-            </p>
-            <p>
-              <span>Event :</span> <a href={`/event/${item.id}`}>{item.name}</a>
-            </p>
-            <p>
-              {item.ticket_status === "available" ? (
-                <a href={`/book/${item.id}`} className="button-basic-1">
-                  BUY TICKET
-                </a>
-              ) : (
-                <span className="sold">TICKET SOLD OUT</span>
-              )}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-</div>
-
-  )
+    );
 }
+
+export default Venue;
