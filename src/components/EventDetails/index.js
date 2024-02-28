@@ -40,8 +40,11 @@ import DOB from "../Dob";
         const [formSubmitted, setFormSubmitted] = useState(false);
         const [venueId, setVenueId] = useState(25);
         const [selectedDate, setSelectedDate] = useState(new Date());
-        const [selectedOption, setSelectedOption] = useState('');
+        // const [selectedOption, setSelectedOption] = useState('');
+        // const [showTextarea, setShowTextarea] = useState(false);
+
         const [showTextarea, setShowTextarea] = useState(false);
+        const [selectedOption, setSelectedOption] = useState('select');
         
     
       
@@ -98,14 +101,13 @@ import DOB from "../Dob";
     
         };
      
-        function handleSelectChange(event) {
-          const selectedValue = event.target.value;
-          setSelectedOption(selectedValue);
-          setShowTextarea(selectedValue === 'other');
-      }
+      //   function handleSelectChange(event) {
+      //     const selectedValue = event.target.value;
+      //     setSelectedOption(selectedValue);
+      //     setShowTextarea(selectedValue === 'other');
+      // }
   
-        
-        
+     
         
 
       
@@ -239,6 +241,14 @@ import DOB from "../Dob";
             setDob(start);
           
           };
+          const handleSelectChange = (event) => {
+            const selectedValue = event.target.value;
+            if (selectedValue === 'other') {
+                document.getElementById('booking_note_textarea').style.display = 'block';
+            } else {
+                document.getElementById('booking_note_textarea').style.display = 'none';
+            }
+        };
     
         if (loader) {
             return (
@@ -417,7 +427,7 @@ import DOB from "../Dob";
             
              
                 <div className="relative z-0 w-full mb-5 group">
-                  {showTextarea ? (
+                  {/* {showTextarea ? (
                     <textarea
                       rows="8"
                       // name="booking_note_textarea"
@@ -443,7 +453,31 @@ import DOB from "../Dob";
                       <option value="graduation">Graduation Dinner</option>
                       <option value="other">Other</option>
                     </select>
-                  )}
+                  )} */}
+
+
+<select
+                id="booking_note_select"
+                name="booking_note"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                onChange={handleSelectChange}
+              >
+                <option value="" className="text-darkgray " >
+                  Select a booking note
+                </option>
+                <option value="birthday">Birthday Celebration</option>
+                <option value="anniversary">Anniversary Party</option>
+                <option value="graduation">Graduation Dinner</option>
+                <option value="other">Other</option>
+              </select>{" "}
+             
+              <textarea
+                id="booking_note_textarea"
+                name="other_event_note"
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder="Your occasion or special request?"
+                style={{ display: "none" }}
+              />
   
                   {
                     <label
@@ -489,7 +523,7 @@ import DOB from "../Dob";
         {/* //////////////////////// */}
     <div id="evnet_page_main">
         {/* <div className="container mx-auto px-4"> */}
-          <h1 class="text-center">   Upcoming Events</h1>
+          <h1 class="text-center">   Upcoming Event</h1>
               <div>
                     <button
                       className=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full view-all"

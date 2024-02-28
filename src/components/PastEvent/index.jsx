@@ -61,7 +61,7 @@ const PastEvent = () => {
   return (
     <div id="evnet_page_main">
       <div className="container mx-auto px-4">
-        <h1 className="text-center">Past Events List </h1>
+        <h1 className="text-center">Past Event List </h1>
         <p className="text-center">
           Your time is limited, don’t waste it living someone else’s life. Don’t be
           trapped by dogma, which is living the result of other people’s thinking.{" "}
@@ -101,14 +101,14 @@ const PastEvent = () => {
                         {moment(item.date_from).format("DD/MM/YYYY")}
                       </td>
                       <td className="event-thumb">
-                        <Link to={`/event/${item.id}`}>
+                        {/* <Link to={`/event/${item.id}`}> */}
                           <img
                             width="90px"
                             height="100px"
                             src={item.featured_image}
                             alt="Event"
                           />
-                        </Link>
+                        {/* </Link> */}
                       </td>
                       {/* <td className="event-artist">{item.name}</td> */}
                       <td className="event-title">
@@ -119,12 +119,13 @@ const PastEvent = () => {
                         {item.past ? (
                           <span className="sold">Book</span>
                         ) : (
-                          <Link
-                            to={`//${item.id}`}
-                            className="button button-white rsvp expired"
-                          >
-                            EXPIRED
-                          </Link>
+                          // <Link
+                          //   to={`//${item.id}`}
+                          //   className="button button-white rsvp expired"
+                          // >
+                             <span    className="button button-white rsvp expired">EXPIRED</span>
+                            
+                          // </Link>
                         )}
                       
                       </td>
@@ -143,14 +144,14 @@ const PastEvent = () => {
             {eventList.map((item, index) => (
               <li key={index}>
                 <span className="img-thumb">
-                  <a href={`/event/${item.id}`}>
+                  {/* <a href={`/event/${item.id}`}> */}
                     <img
                       width="70px"
                       height="100px"
                       src={item.featured_image}
                       alt="Event"
                     />
-                  </a>
+                  {/* </a> */}
                 </span>
                 <p>
                   <span>Date :</span>{" "}

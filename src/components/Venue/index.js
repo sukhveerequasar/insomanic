@@ -217,7 +217,7 @@ const Venue = () => {
     return (
       <div id="evnet_page_main">
         <div className="container mx-auto px-4">
-          <h1 className="text-center"> Events List</h1>
+          <h1 className="text-center"> Event List</h1>
           <p className="text-center">
             Your time is limited, don’t waste it living someone else’s life. Don’t be
             trapped by dogma, which is living the result of other people’s thinking.{" "}

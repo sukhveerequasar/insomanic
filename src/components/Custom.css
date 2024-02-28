@@ -1455,6 +1455,8 @@ select option {
 }
 .expired{
   background-color: red !important;
+  padding: 10px;
+  border: 1px solid #fff;
 }
 /* .ReactModal__Overlay ReactModal__Overlay--after-open{
    z-index: 10 !important; 
@@ -1469,6 +1471,48 @@ select option {
  
  
 }
+/* ////////////////////////////// */
+
+.custom-timepicker-wrapper {
+  position: relative;
+}
+
+
+
+
+/* .custom-timepicker {
+  width: 300px;
+}  */
+
+
+
+.custom-timepicker .react-time-picker__inputGroup__hour {
+  width: 80px !important; 
+}
+
+
+.custom-timepicker .react-time-picker__inputGroup__minute {
+  width: 80px !important; 
+}
+.custom-timepicker .rc-time-picker-panel-input-wrap {
+  border: none;
+}
+
+.custom-timepicker .rc-time-picker-input {
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+.custom-timepicker .rc-time-picker-clear {
+  color: white;
+}
+
+
+
+
+
+/* //////////////////////////////// */
 
 @media screen and (max-width: 480px) {
   .events_box{
