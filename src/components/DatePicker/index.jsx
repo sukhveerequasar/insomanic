@@ -8,7 +8,7 @@ const DateSelector = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   return (
-    <div className="input block w-full placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-white-300 sm:text-sm sm:leading-6 border-2 border-gray-700 rounded-md px-4 py-2 text-gray-700 dark:text-gray-400 ">
+    <div className="input block w-full placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-white-300 sm:text-sm sm:leading-6 border-2 border-gray-600 rounded-md px-4 py-2 text-gray-700 dark:text-gray-400 ">
       <DatePicker
         selected={selectedDate}
         onChange={date => setSelectedDate(date)}

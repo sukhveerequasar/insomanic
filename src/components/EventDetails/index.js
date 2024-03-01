@@ -261,7 +261,7 @@ import DOB from "../Dob";
   return (
     <div id="evnet_booking">
     <div className="md:container md:mx-auto">
-      <div className="relative p-4 bg-color rounded-lg shadow dark:bg-gray-800 sm:p-5">
+      <div className="relative p-4 bg-color rounded-lg shadow  sm:p-5">
       
     
         <div className="grid grid-cols-2 gap-4">
@@ -285,7 +285,7 @@ import DOB from "../Dob";
               </div>
               <div class="relative z-0 w-full mb-5 group table-section">
               <button
-                className="input block w-full placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-white-300 sm:text-sm sm:leading-6 border-2 border-gray-700 rounded-md px-4 py-2 text-gray-700 dark:text-gray-400"
+                className="input block w-full placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none focus:ring-white-300 sm:text-sm sm:leading-6 border-2 border-gray-600 rounded-md px-4 py-2 text-gray-700 dark:text-gray-400"
                 onClick={handleClick}
               >
                 Table Selection
