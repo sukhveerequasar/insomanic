@@ -246,7 +246,7 @@ return (
     contentLabel="Example Modal"
     style={{
       overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 1)',
+        backgroundColor: 'rgba(0, 0, 0, 0.85)',
       },
       content: {
         top: '50%',

@@ -264,7 +264,7 @@ import DOB from "../Dob";
       <div className="relative p-4 bg-color rounded-lg shadow  sm:p-5">
       
     
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 grid-cols-2 sm:grid-cols-2gap-4">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="w-full">
@@ -320,7 +320,8 @@ import DOB from "../Dob";
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
               
-                  <TimePicker
+                 
+                <TimePicker
                     // id="floating_password arrival_time"
                     id="arrival_time"
                     className="block py-1.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
