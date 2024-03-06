@@ -1452,6 +1452,20 @@ select option {
 }
 .convasdata{
   z-index: 0;
+  width: 1200px !important;
+}
+
+.close-button {
+  background-color: #fff;
+  border: 1px solid #cfcece;
+  border-radius: 50px;
+  cursor: pointer;
+  display: block;
+  font-size: 103px;
+  padding: 5px 5px;
+  position: absolute;
+  right: 4px;
+  top: 8px;
 }
 .expired{
   background-color: red !important;
@@ -1534,7 +1548,11 @@ select option[value="1"] {
   background: #53535373;
   box-shadow: 0 0.5rem 1rem rgba(255, 44, 85, 0.17)!important;
 }
-
+.custom-input {
+  background: transparent;
+  border: none;
+  /* Add any additional styles here */
+}
 
 
 

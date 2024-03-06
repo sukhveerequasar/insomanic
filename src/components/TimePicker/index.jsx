@@ -15,20 +15,15 @@ const Timepicker = ({ value, onChange, placeholder, className }) => {
     setTimePickerVisible(false);
   };
 
-  const handleTimePickerBlur = () => {
-    // Close the TimePicker when it loses focus
-    setTimePickerVisible(false);
+  const toggleTimePicker = () => {
+    // Toggle the visibility of the TimePicker
+    setTimePickerVisible(!timePickerVisible);
   };
 
   return (
-    <div
-      onMouseEnter={() => setTimePickerVisible(true)}
-      onMouseLeave={() => setTimePickerVisible(false)}
-    >
+    <div onClick={toggleTimePicker}>
       <TimePicker
         onChange={handleTimeChange}
-        onBlur={handleTimePickerBlur}
-        onOpen={() => setTimePickerVisible(true)}
         value={value ? moment(value) : null}
         showSecond={false}
         format="h:mm A"

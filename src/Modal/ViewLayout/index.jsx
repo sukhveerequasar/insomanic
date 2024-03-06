@@ -5,6 +5,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import axios from 'axios'; 
 import Loader from "react-js-loader";
+import './../../components/Custom.css';
+
 
 const ViewLayout = ({ isOpen, onRequestClose }) => {
   const [response, setResponse] = useState([]);
@@ -244,7 +246,7 @@ return (
     contentLabel="Example Modal"
     style={{
       overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        backgroundColor: 'rgba(0, 0, 0, 1)',
       },
       content: {
         top: '50%',
@@ -261,21 +263,34 @@ return (
       },
     }}
   >
+   
     {loader ? (
       <div style={{ overflow: 'hidden' }}> {/* Hide overflow while loader is displayed */}
-        <Loader type="spinner-cub" bgColor={'white'} color={'white'} size={100} />
+        <Loader type="spinner-cub" bgColor={'white'} color={'white'} size={100} className="loader" />
       </div>
     ) : (
+      <div className='p-17 bg-[transparent]'>
+        <h1 className='text-center text-lg'>SELECT SECTION </h1>
+       <div style={{ position: 'absolute', top: 0, right: 0 }}>
+    <button onClick={onRequestClose} className="close-button">
+      <svg className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
       <canvas
         ref={canvasRef}
-        width={imgWidth || 1000}
-        height={imgHeight || 800}
-        style={{ border: '1px solid #ccc' }}
+        width={imgWidth || 600}
+        height={imgHeight || 400}
+        // style={{ border: '1px solid #ccc' }}
         onMouseMove={handleMouseMove}
         onClick={handleCanvasClick}
         className='convasdata'
       ></canvas>
+      </div>
+      
     )}
+      
   </Modal>
 );
 };
