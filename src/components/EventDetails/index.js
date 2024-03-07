@@ -259,11 +259,10 @@ import DOB from "../Dob";
             )
         }
   return (
+    <>
     <div id="evnet_booking">
     <div className="md:container md:mx-auto">
-      <div className="relative p-4 bg-color rounded-lg shadow  sm:p-5">
-      
-    
+      <div className="relative p-4 bg-color rounded-lg  sm:p-5">
         <div className="grid grid-cols-1 grid-cols-2 sm:grid-cols-2gap-4">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
@@ -506,29 +505,33 @@ import DOB from "../Dob";
             <ToastContainer />
           </div>
         </div>
-
       </div>
-        {/* //////////////////////// */}
-    <div id="evnet_page_main">
-        {/* <div className="container mx-auto px-4"> */}
-          <h1 class="text-center">   Upcoming Event</h1>
-              <div>
-                    <button
-                      className=" hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full view-all"
-                      type="button"
-                      onClick={handleButtonClick}
-                    >
-                      View All
-                    </button>
-                  </div>
-            <UpcomingEvents venueId={venueId} />
-      {/* </div> */}
-  </div>
     </div>
-  
   </div>
+   <div id="evnet_page_main">
+   <div className="container mx-auto px-4">
+     <h1 className="text-center"> Upcoming Event</h1>
+     <p className="text-center">
+       Your time is limited, don’t waste it living someone else’s life. Don’t be
+       trapped by dogma, which is living the result of other people’s thinking.{" "}
+       <br />
+       Don’t let the noise of other opinions drown your own inner voice.
+     </p>
+     <div className="flex justify-end mt-10">
+       <button
+         className="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full current-event view-venue"
+         type="button"
+       >
+         <a href="/venue" className='current-event'>View All</a>
+       </button>
+     </div>
+   </div>
+   <div className="container mx-auto px-4">
+   <UpcomingEvents venueId={venueId} />
+   </div>
+   </div>
   
-  
+  </>
 
   )
 }
