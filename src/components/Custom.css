@@ -797,11 +797,19 @@ select option {
   padding: 10px;
   border: 1px solid #fff;
 }
-
+/* .ReactModal__Overlay ReactModal__Overlay--after-open{
+   z-index: 10 !important; 
+} */
 .ReactModal__Overlay{
    z-index: 10 !important; 
 }
-
+.custom-timepicker .rc-time-picker-input {
+  
+  border: none !important;
+  background-color: transparent;
+ 
+ 
+}
 .react-datepicker__triangle {
   display: none !important; 
 }
@@ -821,18 +829,18 @@ select option[value="1"] {
 
 .custom-timepicker-wrapper {
   position: relative;
-} 
+}
 
 
 
 
- .custom-timepicker {
+/* .custom-timepicker {
   width: 300px;
-}  
+}  */
 
 
 
- .custom-timepicker .react-time-picker__inputGroup__hour {
+/* .custom-timepicker .react-time-picker__inputGroup__hour {
   width: 80px !important; 
 }
 
@@ -852,7 +860,7 @@ select option[value="1"] {
 
 /* .custom-timepicker .rc-time-picker-clear {
   color: white;
-}
+} */
 /* Book Event Form */
 /* #evnet_booking {
   width: 100%;
@@ -871,6 +879,14 @@ select option[value="1"] {
   /* Add any additional styles here */
 }
 
+
+
+select:invalid {
+  color: green;
+}
+
+
+/* //////////////////////////////// */
 
 @media screen and (max-width: 480px) {
   .events_box{
@@ -921,5 +937,27 @@ select option[value="1"] {
     margin-bottom: 10px;
   }
    */
+   .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border: none !important;
+    color: rebeccapurple;
+  }
+  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    color: #fff!important;
+    border: 2px solid #fff;
+  }
+  .css-i4bv87-MuiSvgIcon-root{
+    color: #718096 !important;
+  }
+  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+    font: inherit;
+    letter-spacing: inherit;
+    padding: 4px 0 5px;
+    border: 0;
+    box-sizing: content-box;
+    background: none;
+    height: 0px !important;
+    padding: 6.5px 14px !important;
+    padding-right: 76px !important;
+  }
   
 }
