@@ -225,13 +225,13 @@ const Venue = () => {
             Don’t let the noise of other opinions drown your own inner voice.
           </p>
           <div className="flex justify-end mt-10">
-  <button
-    className="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full current-event"
-    type="button"
-  >
-    <a href="/pastevent" className='current-event'>Past Event</a>
-  </button>
-</div>
+            <button
+              className="hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full current-event"
+              type="button"
+            >
+              <a href="/pastevent" className='current-event'>Past Event</a>
+            </button>
+          </div>
         </div>
         <div className="container mx-auto px-4">
           <div className="events_box">

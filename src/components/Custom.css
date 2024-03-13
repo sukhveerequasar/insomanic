@@ -612,6 +612,30 @@ body {
   text-shadow: 0 0 15px #ff4e5b, 0 0 15px rgba(255,78,91,0.52);
 }
 
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border: none !important;
+  color: rebeccapurple;
+}
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  color: #ffffff !important;
+  border: 2px solid #fff;
+}
+.css-i4bv87-MuiSvgIcon-root{
+  color: #718096 !important;
+  margin-bottom: 8px;
+}
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+  font: inherit;
+  letter-spacing: inherit;
+  padding: 4px 0 5px;
+  border: 0;
+  box-sizing: content-box;
+  background: none;
+  height: 0px !important;
+  padding: 5.5px 14px !important;
+  padding-right: 76px !important;
+}
+
 #evnet_page_main p{
   font-size: 14px;
   color: #fff;
@@ -619,6 +643,14 @@ body {
   margin-bottom: 80px;
 }
 
+.booking-date {
+  color: #718096; /* You can adjust the color code as needed */
+}
+
+select:invalid,
+select option[value=""] {
+  color: #999999;
+}
 
 .events .event a{
   color: #fff;
@@ -808,7 +840,7 @@ select option[value="1"] {
 
 
 
-.custom-timepicker .react-time-picker__inputGroup__hour {
+/* .custom-timepicker .react-time-picker__inputGroup__hour {
   width: 80px !important; 
 }
 
@@ -824,17 +856,17 @@ select option[value="1"] {
   background-color: transparent;
   color: white;
   border: none;
-}
+} */
 
-.custom-timepicker .rc-time-picker-clear {
+/* .custom-timepicker .rc-time-picker-clear {
   color: white;
-}
+} */
 /* Book Event Form */
-#evnet_booking {
+/* #evnet_booking {
   width: 100%;
   float: left;
   margin: 10% 0px;
-}
+} */
 
 .bg-color{
   background: #53535373;
@@ -847,6 +879,11 @@ select option[value="1"] {
   /* Add any additional styles here */
 }
 
+
+
+select:invalid {
+  color: green;
+}
 
 
 /* //////////////////////////////// */
@@ -900,5 +937,27 @@ select option[value="1"] {
     margin-bottom: 10px;
   }
    */
+   .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border: none !important;
+    color: rebeccapurple;
+  }
+  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    color: #fff!important;
+    border: 2px solid #fff;
+  }
+  .css-i4bv87-MuiSvgIcon-root{
+    color: #718096 !important;
+  }
+  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+    font: inherit;
+    letter-spacing: inherit;
+    padding: 4px 0 5px;
+    border: 0;
+    box-sizing: content-box;
+    background: none;
+    height: 0px !important;
+    padding: 6.5px 14px !important;
+    padding-right: 76px !important;
+  }
   
 }

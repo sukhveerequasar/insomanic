@@ -85,7 +85,7 @@ const DateComponent = ({ dob, onChange, placeholder }) => {
   showYearDropdown
   placeholderText={placeholder}
   dateFormat="yyyy-MM-dd"
-  className="bg-transparent border-none "
+  className="bg-transparent border-none"
   showTimeInput={false}
   popperClassName="light-popper"
   utcOffset={new Date().getTimezoneOffset()}
