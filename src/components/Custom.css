@@ -46,10 +46,7 @@ body {
   border: none !important;
   color: rebeccapurple;
 }
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
-  color: #ffffff !important;
-  border: 2px solid #fff;
-}
+
 .css-i4bv87-MuiSvgIcon-root{
   color: #718096 !important;
   margin-bottom: 8px;
@@ -64,6 +61,8 @@ body {
   height: 0px !important;
   padding: 5.5px 14px !important;
   padding-right: 76px !important;
+  color: #ffffff !important;
+  border: 2px solid #fff;
 }
 
 #evnet_page_main p{
@@ -326,31 +325,6 @@ select:invalid {
     border-color: #ffffff;
     width: 220px;
   }
-  /* .view-venue{
-    margin-bottom: 10px;
-  }
-   */
-   /* .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border: none !important;
-    color: rebeccapurple;
-  }
-  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
-    color: #fff!important;
-    border: 2px solid #fff;
-  }
-  .css-i4bv87-MuiSvgIcon-root{
-    color: #718096 !important;
-  }
-  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
-    font: inherit;
-    letter-spacing: inherit;
-    padding: 4px 0 5px;
-    border: 0;
-    box-sizing: content-box;
-    background: none;
-    height: 0px !important;
-    padding: 6.5px 14px !important;
-    padding-right: 76px !important;
-  } */
+
   
 }
