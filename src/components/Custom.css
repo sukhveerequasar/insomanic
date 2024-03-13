@@ -803,13 +803,13 @@ select option {
 .ReactModal__Overlay{
    z-index: 10 !important; 
 }
-.custom-timepicker .rc-time-picker-input {
+/* .custom-timepicker .rc-time-picker-input {
   
   border: none !important;
   background-color: transparent;
  
  
-}
+} */
 .react-datepicker__triangle {
   display: none !important; 
 }
@@ -827,9 +827,9 @@ select option[value="1"] {
 }
 /* ////////////////////////////// */
 
-.custom-timepicker-wrapper {
+/* .custom-timepicker-wrapper {
   position: relative;
-}
+} */
 
 
 
