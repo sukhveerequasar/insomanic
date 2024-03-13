@@ -937,7 +937,7 @@ select:invalid {
     margin-bottom: 10px;
   }
    */
-   .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+   /* .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
     border: none !important;
     color: rebeccapurple;
   }
@@ -959,5 +959,5 @@ select:invalid {
     padding: 6.5px 14px !important;
     padding-right: 76px !important;
   }
-  
+   */
 }
