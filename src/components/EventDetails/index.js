@@ -528,7 +528,7 @@ import SelectDatePicker from "../SelectDatePicker";
       </div>
     </div>
   </div>
-   {/* <div id="evnet_page_main">
+   <div id="evnet_page_main">
    <div className="container mx-auto px-4">
      <h1 className="text-center"> Upcoming Event</h1>
      <p className="text-center">
@@ -549,7 +549,7 @@ import SelectDatePicker from "../SelectDatePicker";
    <div className="container mx-auto px-4">
    <UpcomingEvents venueId={venueId} />
    </div>
-   </div> */}
+   </div>
   
   </>
 
