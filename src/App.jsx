@@ -14,6 +14,7 @@ import StripeButton from './components/StripeButton';
 import PaymentForm from './components/PaymentForm';
 import PastEvent from './components/PastEvent';
 // import './App.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
