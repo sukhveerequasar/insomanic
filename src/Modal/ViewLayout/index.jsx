@@ -199,46 +199,6 @@ const handleCanvasClick = (event) => {
   }
 };
 
-
-
-//   return (
-//     <Modal
-//       isOpen={isOpen}
-//       onRequestClose={onRequestClose}
-//       contentLabel="Example Modal"
-//       style={{
-//         overlay: {
-//           backgroundColor: 'rgba(0, 0, 0, 0.85)',
-//         },
-//         content: {
-//           top: '50%',
-//           left: '50%',
-//           right: 'auto',
-//           bottom: 'auto',
-//           marginRight: '-50%',
-//           transform: 'translate(-50%, -50%)',
-//           background: 'none',
-//           border: 'none',
-//           padding: 0,
-//           maxHeight: '100vh',
-//         },
-//       }}
-//     >
-//       {loader ?
-//       <Loader type="spinner-cub" bgColor={'white'} color={'white'}  size={100} />
-//     :
-//       <canvas
-//         ref={canvasRef}
-//         width={imgWidth || 1000}
-//         height={imgHeight || 800}
-//         style={{ border: '1px solid #ccc' }}
-//         onMouseMove={handleMouseMove}
-//         onClick={handleCanvasClick}
-//       ></canvas>
-// }
-//     </Modal>
-//   );
-// };
 return (
   <Modal
     isOpen={isOpen}

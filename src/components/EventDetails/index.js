@@ -186,7 +186,7 @@ import SelectDatePicker from "../SelectDatePicker";
           // Wait for a moment before refreshing the page
           setTimeout(() => {
               // Refresh the page
-              window.location.reload();
+              //window.location.reload();
           }, 3000); // Adjust the time according to your needs
       };
   

@@ -325,6 +325,9 @@ select:invalid {
     border-color: #ffffff;
     width: 220px;
   }
+  .convasdata {
+    width: 100% !important; /* Set to full width of the screen */
+  }
 
   
 }
