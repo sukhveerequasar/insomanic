@@ -195,7 +195,7 @@ import SelectDatePicker from "../SelectDatePicker";
 
         // Function to handle changes in the input
         const handleChange = (e) => {
-          // Remove any non-numeric characters
+          // Remove any non-numeric character
           const sanitizedValue = e.target.value.replace(/\D/g, '');
           console.log(sanitizedValue);
       
