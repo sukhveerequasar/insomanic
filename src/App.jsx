@@ -10,8 +10,6 @@ import Venue from './components/Venue';
 import VenuePage from './components/VenuePage';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import StripeButton from './components/StripeButton';
-import PaymentForm from './components/PaymentForm';
 import PastEvent from './components/PastEvent';
 // import './App.css';
 
@@ -32,14 +30,14 @@ const App = () => {
         <Route path="/event" element={<Event />} />
         <Route path="/pastevent" element={<PastEvent />} />
         <Route path="/venuepage" element={<VenuePage />} />
-        <Route
+        {/* <Route
           path="/checkout"
           element={
             <Elements stripe={stripePromise}>
               <PaymentForm />
             </Elements>
           }
-        />
+        /> */}
       </Routes>
     </Router>
   );
