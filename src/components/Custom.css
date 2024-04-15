@@ -320,6 +320,7 @@ select:invalid {
 }
 .price{
   color: white;
+    margin-bottom: 30px;
 }
 .CardElement {
   height: 40px;
@@ -333,7 +334,7 @@ select:invalid {
 
 .CardElement::placeholder {
   color: #fff;
-  margin-bottom: 30px;
+
   
 }
 
