@@ -318,6 +318,22 @@ select option[value="1"] {
 select:invalid {
   color: green;
 }
+.price{
+  color: white;
+}
+.CardElement {
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #fff;
+  font-size: 16px;
+}
+
+.CardElement::placeholder {
+  color: #fff;
+}
 
 
 /* //////////////////////////////// */

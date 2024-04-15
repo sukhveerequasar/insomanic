@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Map from "../Map";
 import UpcomingEvents from "../EventDetails/UpcomingEvents";
 import axios from 'axios';
-import '../Custom.css'; 
+import '../Custom.css';
 import 'rc-time-picker/assets/index.css';
 import TimePicker from "../TimePicker";
 import Loader from "react-js-loader";
@@ -14,21 +14,11 @@ import { Link } from 'react-router-dom';
 import ViewLayout from "../../Modal/ViewLayout";
 
 import DatePicker from "../DatePicker";
-import { ToastContainer, toast } from 'react-toastify';  
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DOB from "../Dob";
 import SelectDatePicker from "../SelectDatePicker";
 
-import {
-  CardElement,
-  useStripe,
-  useElements,
-  Elements
-} from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-
-// Load your publishable key from an environment variable or direct string
-const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGjA0xtiWFhVn0qtIkOP5YQ8TY1Zf5ydt8gbkQcUY9pc1K3d2MpIDV00pJtNaQz3");
 
     const EventDetails = () => {
         const navigate = useNavigate()
@@ -124,6 +114,12 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
       //     setSelectedOption(selectedValue);
       //     setShowTextarea(selectedValue === 'other');
       // }
+  
+     
+        
+
+      
+        
     
         const isValidFormData = () => {
             // Implement your validation logic here
@@ -193,109 +189,6 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
               //window.location.reload();
           }, 3000); // Adjust the time according to your needs
       };
-
-
-      const stripe = useStripe();
-      const elements = useElements();
-
-      const handleSubmit_withpay = async (e) => {
-        e.preventDefault();
-
-        if (!stripe || !elements) {
-          // Stripe.js has not loaded yet. Make sure to disable form submission until Stripe.js has loaded.
-          return;
-        }
-
-        // Get a reference to a mounted CardElement
-        const cardElement = elements.getElement(CardElement);
-
-        // Use your API endpoint to create the payment intent
-        const { data: { clientSecret } } = await axios.post('https://event-backend.isdemo.in/api/v1/create-payment-intent', {
-          // You can add other payment information here, like amount, currency, etc.
-          // These could be constants or derived from state, props, inputs, etc.
-          amount: document.getElementById('amt_main').value=100
-        });
-
-        // Confirm the payment
-        const result = await stripe.confirmCardPayment(clientSecret, {
-          payment_method: {
-            card: cardElement,
-            billing_details: {
-              name: document.getElementById('first_name').value+' '+document.getElementById('last_name').value,
-            },
-          },
-        });
-
-        if (result.error) {
-          // Show error to your customer (e.g., insufficient funds)
-          console.log(result.error.message);
-        } else {
-          // The payment has been processed!
-          if (result.paymentIntent.status === 'succeeded') {
-            console.log('Payment succeeded!');
-          }
-        }
-
-        if (!isValidFormData()) {
-            // Show error toast for invalid form data
-            toast.error('Please fill out all required fields.', {
-                position: 'top-center',
-                autoClose: 1000,
-            });
-            return;
-        }
-
-        // Capture form data
-        const formData = {
-            section: document.getElementById('section').value,
-            // arrival_time: arrivalTime,
-            arrival_time: arrivalTime && arrivalTime.format('HH:mm'),
-            first_name: document.getElementById('first_name').value,
-            last_name: document.getElementById('last_name').value,
-            phone: document.getElementById('phone').value,
-            email: document.getElementById('email').value,
-            // dob: document.getElementById('dob').value,
-            dob: dob, // Assign the dob directly here
-            booking_note: document.getElementById('booking_note_select').value,
-            no_of_seats: document.getElementById('no_of_seats').value,
-            // agreeTerms: document.getElementById('agreeTerms').checked,
-            venue_id: eventDetails.venue_id, // Replace with the actual venue_id
-            event_id: eventDetails.id, // Replace with the actual event_id
-        };
-        // if (!isValidDateFormat(dob)) {
-        //     // Display an error message for invalid date format
-        //     toast.error('Invalid date of birth format.', {
-        //         position: 'top-center',
-        //         autoClose: 1000,
-        //     });
-        //     return;
-        // }
-
-        try {
-            const response = await axios.post("https://event-backend.isdemo.in/api/v1/ticketbooking", formData);
-
-            if (response.status === 200) {
-                console.log("Form submitted successfully!");
-                // Add any additional logic or redirection after successful form submission
-            } else {
-                console.error("Form submission failed.");
-            }
-        } catch (error) {
-            console.error("Error during form submission:", error);
-        }
-
-        // Display success toast
-        toast.success('Form submitted successfully!', {
-            position: 'top-center',
-            autoClose: 1000,
-        });
-
-        // Wait for a moment before refreshing the page
-        setTimeout(() => {
-            // Refresh the page
-            //window.location.reload();
-        }, 3000); // Adjust the time according to your needs
-    };
   
        
         const [value, setValue] = useState('');
@@ -402,8 +295,17 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
               <div className="w-full">
                 {eventDetails && (
                   <img src={eventDetails.featured_image ?? ""} alt="cart" />
-                )}
-              </div>
+                  
+                    )}
+                 </div>
+                  {/* <div className="w-full
+                  ">
+                    {eventDetails.is_purchasable ? <div>
+                       <p>{eventDetails.is_purchasable}</p>
+                    </div>:null}
+                 
+                  </div> */}
+                  
             </div>
           
           </div>
@@ -412,7 +314,7 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
               <div className="max-w-4xl mx-auto">
                   <div className="grid md:grid-cols-2 md:gap-6">
                           <div className="relative z-10 w-full mb-5 group">
-                                <div className="w-full"> 
+                                <div className="w-full">
 
                             
                               <SelectDatePicker  placeholder='Select Date' onChange={handleDobChange}  utcOffset={new Date().getTimezoneOffset()}/>
@@ -434,8 +336,9 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                       )}
                     </div>
                       </div>
-                  </div>
-                  <form className="max-w-4xl mx-auto" onSubmit={eventDetails.is_purchasable ? handleSubmit_withpay : handleSubmit}>
+                </div>
+                
+                  <form className="max-w-4xl mx-auto" onSubmit={handleSubmit}>
                     
                     <div className="grid md:grid-cols-2 md:gap-6">
                       <div className="relative z-0 w-full mb-5 group">
@@ -506,7 +409,7 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                           // type="tel"
                           // pattern="[0-9]{10}"
                           
-                          // className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent"
+                          // class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent"
                           // placeholder=" "
                           // required
                           id="phone"
@@ -612,30 +515,19 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                       >
                         Total Guests:
                       </label>
-                    </div>
-
-                    {eventDetails.is_purchasable ? <div className="relative z-10 w-full mb-5 group">
-                    <input type="number" value={eventDetails.price} name="amount" id="amt_main" style={{ display: "none" }}/> 
-                    <p className="price">Price: {eventDetails.price}</p>
-                    <CardElement   options={{
-                            style: {
-                              base: {
-                                fontSize: '16px',
-                                color: 'white', // Set text color to white
-                                '::placeholder': {
-                                  color: '#fff',
-                                },
-                              
-                              },
-                            },
-                          }}/>
-                    </div>:null} 
+                  </div>
+                    {eventDetails.is_purchasable ? <div>
+                       <p>{eventDetails.price}</p>
+                    </div>:null}
+                 
+        
                     {/* <button
                       type="submit"
-                      className="text-white bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      class="text-white bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                       Submit
                     </button> */}
+                  
                     <button
           type="submit"
           className="text-white bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 submit-btn-ticket"
@@ -679,16 +571,4 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
   )
 }
 
-// Wrap the component in the Elements provider
-function MyCheckoutForm() {
-  return (
-    <Elements stripe={stripePromise}>
-      <EventDetails />
-    </Elements>
-  );
-}
-
-export default MyCheckoutForm;
-
-// export default EventDetails
-
+export default EventDetails
