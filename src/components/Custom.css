@@ -333,6 +333,8 @@ select:invalid {
 
 .CardElement::placeholder {
   color: #fff;
+  margin-bottom: 30px;
+  
 }
 
 
