@@ -50,8 +50,11 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
         const [error, setError] = useState(null);
         const [formSubmitted, setFormSubmitted] = useState(false);
         const [venueId, setVenueId] = useState(25);
-        const [selectedDate, setSelectedDate] = useState(new Date());
-        // const [selectedOption, setSelectedOption] = useState('');
+      const [selectedDate, setSelectedDate] = useState(new Date());
+      const [guestCount, setGuestCount] = useState(null);
+      const [cost, setCost] = useState(null);
+      // const [selectedOption, setSelectedOption] = useState('');
+      
         // const [showTextarea, setShowTextarea] = useState(false);
 
         const [showTextarea, setShowTextarea] = useState(false);
@@ -59,18 +62,37 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
       const [isLabelHidden, setIsLabelHidden] = useState(false);
       const [selectedPaymenyMode, setSelectedPaymentMode] = useState('');
        const [selectedModeId, setSelectedModeId] = useState('');
-        
+      const [updatedPrice, setUpdatedPrice] = useState();
         const handleLabelClick = () => {
           setIsLabelHidden(true);
         };
         // const handdleClick = (e) => {
         //   e.preventDefault(); // Prevents default browser behavior
-        // };
+      // };
+      
+
+
+
+
+
+
+
+
+
+
+
+
+      useEffect(() => {
+        
+        setUpdatedPrice(cost* guestCount)
+      },[guestCount])
     
         //handleButtonClick redirect  venue page
         const handleButtonClick = () => {
           navigate(`/venue/${venueId}`);
-        };
+      };
+      
+      console.log(updatedPrice,"new price is ")
     // Section  localStorage  remove
         useEffect(()=>{
             localStorage.removeItem('Section');
@@ -177,9 +199,10 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
             return true; // For demonstration, always return true
         };
      
-        const handleSubmit = async (e) => {
+      const handleSubmit = async (e) => {
+          
           e.preventDefault();
-  
+        
           if (!isValidFormData()) {
               // Show error toast for invalid form data
               toast.error('Please fill out all required fields.', {
@@ -187,8 +210,9 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                   autoClose: 1000,
               });
               return;
-          }
-  
+        }
+        setGuestCount(document.getElementById('no_of_seats').value);
+          setLoader(true);
           // Capture form data
           const formData = {
               section: document.getElementById('section').value,
@@ -218,21 +242,36 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
           try {
               const response = await axios.post("https://event-backend.isdemo.in/api/v1/ticketbooking", formData);
   
-              if (response.status === 200) {
-                  console.log("Form submitted successfully!");
+            if (response.status === 200) {
+                setLoader(false)
+              console.log("Form submitted successfully!");
+              toast.success('Form submitted successfully!', {
+            position: 'top-center',
+            autoClose: 1000,
+        });
+setTimeout(() => {
+              // Refresh the page
+              navigate("/venue")
+          }, 1000);// Adjust the time according to your needs
                   // Add any additional logic or redirection after successful form submission
-              } else {
-                  console.error("Form submission failed.");
-              }
-          } catch (error) {
-              console.error("Error during form submission:", error);
-          }
-  
-          // Display success toast
-          toast.success('Form submitted successfully!', {
+            } else {
+              setLoader(false)
+                toast.error('Form submission failed.', {
               position: 'top-center',
               autoClose: 1000,
           });
+                  // console.error("Form submission failed.");
+              }
+          } catch (error) {
+             setLoader(false)
+               toast.error('Form submission failed.', {
+              position: 'top-center',
+              autoClose: 1000,
+          });
+          }
+  
+          // Display success toast
+         
   
           // Wait for a moment before refreshing the page
           setTimeout(() => {
@@ -254,8 +293,9 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                   autoClose: 1000,
               });
               return;
-          }
-  
+       }
+       setGuestCount(document.getElementById('no_of_seats').value);
+    setLoader(true)
           // Capture form data
           const formData = {
               section: document.getElementById('section').value,
@@ -272,8 +312,8 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
               // agreeTerms: document.getElementById('agreeTerms').checked,
               venue_id: eventDetails.venue_id, // Replace with the actual venue_id
             event_id: eventDetails.id, // Replace with the actual event_id
-            price: eventDetails.price,
-              paymentMode:selectedModeId,
+            price: updatedPrice,
+              payment_type:selectedModeId,
           };
           // if (!isValidDateFormat(dob)) {
           //     // Display an error message for invalid date format
@@ -287,8 +327,20 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
           try {
               const response = await axios.post("https://event-backend.isdemo.in/api/v1/ticketbooking", formData);
   
-              if (response.status === 200) {
-                  console.log("Form submitted successfully!");
+            if (response.status === 200) {
+                setLoader(false)
+              console.log("Form submitted successfully!");
+              setUpdatedPrice("");
+              setGuestCount("")
+                toast.success('Form submitted successfully!', {
+            position: 'top-center',
+            autoClose: 1000,
+        });
+setTimeout(() => {
+              // Refresh the page
+              navigate("/venue")
+          }, 1000);// Adjust the time according to your needs
+              
                   // Add any additional logic or redirection after successful form submission
               } else {
                   console.error("Form submission failed.");
@@ -298,21 +350,18 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
           }
   
           // Display success toast
-          toast.success('Form submitted successfully!', {
-              position: 'top-center',
-              autoClose: 1000,
-          });
+         
   
           // Wait for a moment before refreshing the page
           setTimeout(() => {
               // Refresh the page
-              //window.location.reload();
-          }, 3000); // Adjust the time according to your needs
+              navigate("/venue")
+          }, 1000); // Adjust the time according to your needs
       };
 
       const handleSubmit_withpay = async (e) => {
         e.preventDefault();
-
+setGuestCount(document.getElementById('no_of_seats').value);
         if (!stripe || !elements) {
           // Stripe.js has not loaded yet. Make sure to disable form submission until Stripe.js has loaded.
           return;
@@ -325,7 +374,7 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
         const { data: { clientSecret } } = await axios.post('https://event-backend.isdemo.in/api/v1/create-payment-intent', {
           // You can add other payment information here, like amount, currency, etc.
           // These could be constants or derived from state, props, inputs, etc.
-          amount: document.getElementById('amt_main').value=100
+          amount: updatedPrice
         });
 
         // Confirm the payment
@@ -356,6 +405,7 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
             });
             return;
         }
+        setLoader(true)
 
         // Capture form data
         const formData = {
@@ -373,8 +423,8 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
             // agreeTerms: document.getElementById('agreeTerms').checked,
             venue_id: eventDetails.venue_id, // Replace with the actual venue_id
           event_id: eventDetails.id, // Replace with the actual event_id
-          price: eventDetails.price,
-            payment_mode:selectedModeId,
+          price: updatedPrice,
+            payment_type:selectedModeId,
         };
         // if (!isValidDateFormat(dob)) {
         //     // Display an error message for invalid date format
@@ -388,8 +438,18 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
         try {
             const response = await axios.post("https://event-backend.isdemo.in/api/v1/ticketbooking", formData);
 
-            if (response.status === 200) {
-                console.log("Form submitted successfully!");
+          if (response.status === 200) {
+              setLoader(false)
+            console.log("Form submitted successfully!");
+            // Display success toast
+        toast.success('Form submitted successfully!', {
+            position: 'top-center',
+            autoClose: 1000,
+        });
+setTimeout(() => {
+              // Refresh the page
+              navigate("/venue")
+          }, 1000);// Adjust the time according to your needs
                 // Add any additional logic or redirection after successful form submission
             } else {
                 console.error("Form submission failed.");
@@ -398,17 +458,9 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
             console.error("Error during form submission:", error);
         }
 
-        // Display success toast
-        toast.success('Form submitted successfully!', {
-            position: 'top-center',
-            autoClose: 1000,
-        });
-
+        
         // Wait for a moment before refreshing the page
-        setTimeout(() => {
-            // Refresh the page
-            //window.location.reload();
-        }, 3000); // Adjust the time according to your needs
+        
     };
   
        
@@ -433,7 +485,8 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                     console.log('venueId:', venueId);
     
                     if (response.data.id == id) {
-                        setEventDetails(response.data);
+                      setEventDetails(response.data);
+                      setCost(response.data.price)
                         setLoader(false)
                         const venueResponse = await axios.post(
                           `https://event-backend.isdemo.in/api/v1/venue_detail`,
@@ -713,14 +766,14 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                     
                     <div className="relative z-10 w-full mb-5 group">
                       <input
-                        type="number"
-                        // name="no_of_seats"
-                        id="no_of_seats"
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        placeholder=" "
-                        required
-                        min="1"
-                      
+                      type="number"
+                      // name="no_of_seats"
+                      id="no_of_seats"
+                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      placeholder=" "
+                      required
+                      min="1"
+                      onChange={(e) => { setGuestCount(e.target.value) }}
                       />
                       <label
                         for="no_of_seats"
@@ -732,7 +785,7 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
 
                     {eventDetails.is_purchasable ? <div className="relative z-10 w-full mb-5 group">
                     <input type="number" value={eventDetails.price} name="amount" id="amt_main" style={{ display: "none" }}/> 
-                    <p className="price">Price: {eventDetails.price}</p>
+                    <p className="price">Price: {updatedPrice?updatedPrice:eventDetails.price}</p>
 
                     <div className="relative z-10 w-full mb-5 group text-[white]">
             <h2 className="text-sm">Select Payment Mode:</h2>
