@@ -32,7 +32,7 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
 
     const EventDetails = () => {
         const navigate = useNavigate()
-       
+      const [paymentMode, setPaymentMode] = useState(null);
         const [mySection, setMySection] = useState(null);
         const { id } = useParams();
         const [numberOfEvents, setNumberOfEvents] = useState(null);
@@ -56,7 +56,9 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
 
         const [showTextarea, setShowTextarea] = useState(false);
         const [selectedOption, setSelectedOption] = useState('select');
-        const [isLabelHidden, setIsLabelHidden] = useState(false);
+      const [isLabelHidden, setIsLabelHidden] = useState(false);
+      const [selectedPaymenyMode, setSelectedPaymentMode] = useState('');
+       const [selectedModeId, setSelectedModeId] = useState('');
         
         const handleLabelClick = () => {
           setIsLabelHidden(true);
@@ -86,6 +88,51 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
             no_of_seats: "",
             // agreeTerms: false,
         });
+      
+      useEffect(() => {
+        modes()
+      },[])
+      
+      
+      /////////// Paymemt Mode Api Call //////////////
+
+      const modes = async (req, res) => {
+         
+        try {
+          const result = axios.get("https://event-backend.isdemo.in/api/v1/paymentMode").then((data) => {
+            console.log(data.data.data, "data coming from the modes are ")
+            setPaymentMode(data.data.data)
+            
+           })
+
+
+        }
+        catch {
+          
+  }
+
+
+
+
+
+
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+       const handleRadioChange = (event) => {
+         setSelectedPaymentMode(event.target.value);
+         setSelectedModeId(event.target.id)
+    };
+      
+      console.log(selectedModeId,"selected mode id is ==>")
     
         const handdleClick = (e) => {
           e.preventDefault(); // Prevents default browser behavior
@@ -197,6 +244,71 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
 
       const stripe = useStripe();
       const elements = useElements();
+     const handleSubmitWithCash = async (e) => {
+          e.preventDefault();
+  
+          if (!isValidFormData()) {
+              // Show error toast for invalid form data
+              toast.error('Please fill out all required fields.', {
+                  position: 'top-center',
+                  autoClose: 1000,
+              });
+              return;
+          }
+  
+          // Capture form data
+          const formData = {
+              section: document.getElementById('section').value,
+              // arrival_time: arrivalTime,
+              arrival_time: arrivalTime && arrivalTime.format('HH:mm'),
+              first_name: document.getElementById('first_name').value,
+              last_name: document.getElementById('last_name').value,
+              phone: document.getElementById('phone').value,
+              email: document.getElementById('email').value,
+              // dob: document.getElementById('dob').value,
+              dob: dob, // Assign the dob directly here
+              booking_note: document.getElementById('booking_note_select').value,
+              no_of_seats: document.getElementById('no_of_seats').value,
+              // agreeTerms: document.getElementById('agreeTerms').checked,
+              venue_id: eventDetails.venue_id, // Replace with the actual venue_id
+            event_id: eventDetails.id, // Replace with the actual event_id
+            price: eventDetails.price,
+              paymentMode:selectedModeId,
+          };
+          // if (!isValidDateFormat(dob)) {
+          //     // Display an error message for invalid date format
+          //     toast.error('Invalid date of birth format.', {
+          //         position: 'top-center',
+          //         autoClose: 1000,
+          //     });
+          //     return;
+          // }
+  
+          try {
+              const response = await axios.post("https://event-backend.isdemo.in/api/v1/ticketbooking", formData);
+  
+              if (response.status === 200) {
+                  console.log("Form submitted successfully!");
+                  // Add any additional logic or redirection after successful form submission
+              } else {
+                  console.error("Form submission failed.");
+              }
+          } catch (error) {
+              console.error("Error during form submission:", error);
+          }
+  
+          // Display success toast
+          toast.success('Form submitted successfully!', {
+              position: 'top-center',
+              autoClose: 1000,
+          });
+  
+          // Wait for a moment before refreshing the page
+          setTimeout(() => {
+              // Refresh the page
+              //window.location.reload();
+          }, 3000); // Adjust the time according to your needs
+      };
 
       const handleSubmit_withpay = async (e) => {
         e.preventDefault();
@@ -260,7 +372,9 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
             no_of_seats: document.getElementById('no_of_seats').value,
             // agreeTerms: document.getElementById('agreeTerms').checked,
             venue_id: eventDetails.venue_id, // Replace with the actual venue_id
-            event_id: eventDetails.id, // Replace with the actual event_id
+          event_id: eventDetails.id, // Replace with the actual event_id
+          price: eventDetails.price,
+            payment_mode:selectedModeId,
         };
         // if (!isValidDateFormat(dob)) {
         //     // Display an error message for invalid date format
@@ -435,7 +549,9 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                     </div>
                       </div>
                   </div>
-                  <form className="max-w-4xl mx-auto" onSubmit={eventDetails.is_purchasable ? handleSubmit_withpay : handleSubmit}>
+                <form className="max-w-4xl mx-auto" onSubmit={selectedPaymenyMode==="Cash"?handleSubmitWithCash:selectedPaymenyMode==='Online by Stripe Payment Gateway'?handleSubmit_withpay:handleSubmit}
+                // {eventDetails.is_purchasable ? handleSubmit_withpay : handleSubmit}
+                >
                     
                     <div className="grid md:grid-cols-2 md:gap-6">
                       <div className="relative z-0 w-full mb-5 group">
@@ -617,7 +733,27 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                     {eventDetails.is_purchasable ? <div className="relative z-10 w-full mb-5 group">
                     <input type="number" value={eventDetails.price} name="amount" id="amt_main" style={{ display: "none" }}/> 
                     <p className="price">Price: {eventDetails.price}</p>
-                    <CardElement   options={{
+
+                    <div className="relative z-10 w-full mb-5 group text-[white]">
+            <h2 className="text-sm">Select Payment Mode:</h2>
+            {/* Render radio buttons dynamically */}
+            {paymentMode?.map(mode => (
+                <div key={mode.name}>
+                    <input type="radio" id={mode.id} name="element" value={mode.name} className="mr-3 " checked={selectedPaymenyMode === mode.name} 
+                        onChange={handleRadioChange}  />
+                    <label htmlFor={mode.name}>{mode.name}</label>
+                </div>
+            ))}
+        </div>
+
+
+
+
+                    {selectedPaymenyMode === "Online by Stripe Payment Gateway" ?
+
+
+
+ <CardElement   options={{
                             style: {
                               base: {
                                 fontSize: '16px',
@@ -629,6 +765,14 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
                               },
                             },
                           }}/>
+
+
+: null}
+
+
+
+
+                   
                     </div>:null} 
                     {/* <button
                       type="submit"
