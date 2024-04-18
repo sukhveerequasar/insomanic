@@ -611,7 +611,8 @@ setTimeout(() => {
                         <input
                           name="Preffered Section"
                           id="section"
-                          className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent ${
+                          className={`block py-2.5 px-0 w-full text-sm text-white
+                        bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent ${
                             mySection ? "highlight-input" : ""
                           }`}
                           placeholder=""
@@ -626,7 +627,7 @@ setTimeout(() => {
                       </div>
                       <div className="relative z-0 w-full mb-5 group">
                     
-                    <div className="block timepicker-block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2   border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                    <div className="block timepicker-block py-2.5 px-0 w-full text-sm text-white bg-transparent border-b-2   border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                     <TimePicker  onTimeChange={handleTimeChange}   />
                     </div>
                       
@@ -639,7 +640,7 @@ setTimeout(() => {
                     <input
                         type="text"
                         id="first_name"
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent"
+                        className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent"
                         placeholder=" "
                         required
                     />
@@ -656,7 +657,8 @@ setTimeout(() => {
                           type="text"
                           // name="last_name"
                           id="last_name"
-                          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent"
+                        className="block py-2.5 px-0 w-full text-sm  text-white
+                           bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent"
                           placeholder=" "
                           required
                           
@@ -682,7 +684,7 @@ setTimeout(() => {
                           type="tel"
                           value={value}
                           onChange={handleChange}
-                          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent"
+                          className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer bg-transparent"
                           placeholder=" "
                           required
                           inputMode="numeric"
@@ -702,7 +704,7 @@ setTimeout(() => {
                                               type="email"
                                               name="email"
                                               id="email"
-                                              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                              className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                               placeholder=" "
                                               required
                                               onClick={handdleClick}
@@ -718,7 +720,7 @@ setTimeout(() => {
                 
                   
                       <div className="relative z-10 w-full mb-5 group">
-                        <div  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0  peer bg-transparent"
+                        <div  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0  peer bg-transparent"
                         placeholder=" "
                         required>
                       
@@ -732,7 +734,7 @@ setTimeout(() => {
                     <select
                       id="booking_note_select"
                       name="booking_note"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       onChange={handleSelectChange}
                     >
                       {/* <option value="" className="booking-notes">
@@ -748,7 +750,7 @@ setTimeout(() => {
                     <textarea
                       id="booking_note_textarea"
                       name="other_event_note"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder="Your occasion or special request?"
                       style={{ display: "none" }}
                     />
@@ -769,7 +771,7 @@ setTimeout(() => {
                       type="number"
                       // name="no_of_seats"
                       id="no_of_seats"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
                       required
                       min="1"
