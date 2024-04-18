@@ -766,7 +766,7 @@ setTimeout(() => {
                         }
                       </div>
                     
-                    <div className="relative z-10 w-full mb-5 group">
+                    <div className="relative z-0 w-full mb-5 group">
                       <input
                       type="number"
                       // name="no_of_seats"

@@ -17,25 +17,6 @@ const ViewLayout = ({ isOpen, onRequestClose }) => {
   const [hoveredBoxIndex, setHoveredBoxIndex] = useState(null);
   const [loader,setLoader] =useState(true)
 
-  // const fetch = async () => {
-  //   const vid = localStorage.getItem('Venue');
-  
-  //   try {
-      
-  //     const response = await axios.get(`https://event-backend.isdemo.in/api/v1/get_layout`, {
-  //       params: {
-  //         venue_id: 25,
-  //       },
-  //     });
-  
-  //     console.log(response.data, 'Response coming from the get Layout API ======>>');
-  //     setResponse(response.data[0]);
-  //     setMyBox(response.data[0].box_details);
-  //     setUrl(response.data[0].image_url);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
   useEffect(() => {
     fetch();
   }, []);
@@ -200,59 +181,7 @@ const handleCanvasClick = (event) => {
 };
 
 return (
-  // <Modal
-  //   isOpen={isOpen}
-  //   onRequestClose={onRequestClose}
-  //   contentLabel="Example Modal"
-  //   style={{
-  //     overlay: {
-  //       backgroundColor: 'rgba(0, 0, 0, 0.85)',
-  //     },
-  //     content: {
-  //       top: '50%',
-  //       left: '50%',
-  //       right: 'auto',
-  //       bottom: 'auto',
-  //       marginRight: '-50%',
-  //       transform: 'translate(-50%, -50%)',
-  //       background: 'none',
-  //       border: 'none',
-  //       padding: 0,
-  //       maxHeight: '100vh',
-  //       zIndex: 0,
-  //     },
-  //   }}
-  // >
-   
-  //   {loader ? (
-  //     <div style={{ overflow: 'hidden' }}> {/* Hide overflow while loader is displayed */}
-  //       <Loader type="spinner-cub" bgColor={'white'} color={'white'} size={100} className="loader" />
-  //     </div>
-  //   ) : (
-  //     <div className='p-17 bg-[transparent]'>
-  //       <h1 className='text-center text-lg'>SELECT SECTION </h1>
-  //      <div style={{ position: 'absolute', top: 0, right: 0 }}>
-  //   <button onClick={onRequestClose} className="close-button">
-  //     <svg className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-  //     </svg>
-  //   </button>
-  // </div>
-  //     <canvas
-  //       ref={canvasRef}
-  //       width={imgWidth || 600}
-  //       height={imgHeight || 400}
-  //       // style={{ border: '1px solid #ccc' }}
-  //       onMouseMove={handleMouseMove}
-  //       onClick={handleCanvasClick}
-  //       className='convasdata'
-  //     ></canvas>
-  //     </div>
-      
-  //   )}
-      
-  // </Modal>
-    <Modal
+  <Modal
     isOpen={isOpen}
     onRequestClose={onRequestClose}
     contentLabel="Example Modal"
@@ -271,17 +200,18 @@ return (
         border: 'none',
         padding: 0,
         maxHeight: '100vh',
-        
+        zIndex: 0,
       },
     }}
   >
+   
     {loader ? (
       <div style={{ overflow: 'hidden' }}> {/* Hide overflow while loader is displayed */}
-        <Loader type="spinner-cub" bgColor={'white'} color={'white'} size={100} />
+        <Loader type="spinner-cub" bgColor={'white'} color={'white'} size={100} className="loader" />
       </div>
     ) : (
-        <div className='p-17 bg-[transparent]'>
-        <h1 className='text-center text-lg text-white'>SELECT SECTION </h1>
+      <div className='p-17 bg-[transparent]'>
+        <h1 className='text-center text-lg'>SELECT SECTION </h1>
        <div style={{ position: 'absolute', top: 0, right: 0 }}>
     <button onClick={onRequestClose} className="close-button">
       <svg className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -289,18 +219,16 @@ return (
       </svg>
     </button>
   </div>
-        
       <canvas
         ref={canvasRef}
         width={imgWidth || 600}
         height={imgHeight || 400}
         // style={{ border: '1px solid #ccc' }}
         onMouseMove={handleMouseMove}
-            onClick={handleCanvasClick}
-            
-             
+        onClick={handleCanvasClick}
+        className='convasdata'
       ></canvas>
- </div>
+      </div>
       
     )}
       
@@ -308,3 +236,5 @@ return (
 );
 };
 export default ViewLayout;
+
+
