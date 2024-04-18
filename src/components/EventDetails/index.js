@@ -27,8 +27,17 @@ import {
 } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
+
+
+
 // Load your publishable key from an environment variable or direct string
-const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGjA0xtiWFhVn0qtIkOP5YQ8TY1Zf5ydt8gbkQcUY9pc1K3d2MpIDV00pJtNaQz3");
+
+
+
+
+
+
+
 
     const EventDetails = () => {
         const navigate = useNavigate()
@@ -56,7 +65,9 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
       // const [selectedOption, setSelectedOption] = useState('');
       
         // const [showTextarea, setShowTextarea] = useState(false);
-
+      const [latestEntry, setLatestEntry] = useState([]);
+      const [publicKey, setPublicKey] = useState();
+      const [secretKey, setSecretKey] = useState();
         const [showTextarea, setShowTextarea] = useState(false);
         const [selectedOption, setSelectedOption] = useState('select');
       const [isLabelHidden, setIsLabelHidden] = useState(false);
@@ -72,13 +83,43 @@ const stripePromise = loadStripe("pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGj
       
 
 
+const fetchKeys = async (req, res) => {
+  
+        try {
+          const result =await axios.get(`https://event-backend.isdemo.in/api/v1/generalsetting?venue_id=${venueId}`)
+       const data = result.data.data
+         const  latestEntry = data.reduce((latest, current) => {
+    if (!latest || new Date(current.created_at) > new Date(latest.created_at)) {
+      return current;
+    }
+    return latest;
+  }, null)
+          setLatestEntry(latestEntry)
+          setPublicKey(latestEntry.stripe_public_key)
+           setSecretKey(latestEntry.stripe_secret_key)
+        }
+        catch {
+          
+  }
 
 
 
 
 
 
+      }
+      
+      useEffect(() => {
+           fetchKeys();
+      },[])
+      
+   
 
+
+
+
+
+console.log(latestEntry,"gduasuhcdihas")
 
 
 
@@ -374,9 +415,13 @@ setGuestCount(document.getElementById('no_of_seats').value);
         const { data: { clientSecret } } = await axios.post('https://event-backend.isdemo.in/api/v1/create-payment-intent', {
           // You can add other payment information here, like amount, currency, etc.
           // These could be constants or derived from state, props, inputs, etc.
-          amount: updatedPrice
+        
+          amount: updatedPrice,
+          venue_id: venueId,
+          secretKey:secretKey,
+          
         });
-
+console.log(clientSecret,"secretssrsrdtdtytggukhi")
         // Confirm the payment
         const result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
@@ -792,13 +837,34 @@ setTimeout(() => {
                     <div className="relative z-10 w-full mb-5 group text-[white]">
             <h2 className="text-sm">Select Payment Mode:</h2>
             {/* Render radio buttons dynamically */}
-            {paymentMode?.map(mode => (
+            {/* {paymentMode?.map(mode => (
                 <div key={mode.name}>
                     <input type="radio" id={mode.id} name="element" value={mode.name} className="mr-3 " checked={selectedPaymenyMode === mode.name} 
                         onChange={handleRadioChange}  />
                     <label htmlFor={mode.name}>{mode.name}</label>
                 </div>
-            ))}
+            ))} */}
+                      {paymentMode?.map(mode => {
+    if (latestEntry.payment_type.includes(mode.id)) {
+        return (
+            <div key={mode.name}>
+                <input 
+                    type="radio" 
+                    id={mode.id} 
+                    name="element" 
+                    value={mode.name} 
+                    className="mr-3" 
+                    checked={selectedPaymenyMode === mode.name} 
+                    onChange={handleRadioChange}  
+                />
+                <label htmlFor={mode.name}>{mode.name}</label>
+            </div>
+        );
+    } else {
+        return null; // Don't render this radio button if ID is not in array2
+    }
+})}
+
         </div>
 
 
@@ -880,6 +946,48 @@ setTimeout(() => {
 
 // Wrap the component in the Elements provider
 function MyCheckoutForm() {
+   const [latestEntry, setLatestEntry] = useState([]);
+      const [publicKey, setPublicKey] = useState();
+  const [secretKey, setSecretKey] = useState();
+  const [venueId, setVenueId] = useState(25);
+  const myKey= publicKey?publicKey:"pk_test_51OxpbCGj3q9OEgX1LRc2KdSA4mwwAI1KejyGjA0xtiWFhVn0qtIkOP5YQ8TY1Zf5ydt8gbkQcUY9pc1K3d2MpIDV00pJtNaQz3"
+  const stripePromise = loadStripe(myKey);
+  
+const fetchKeys = async (req, res) => {
+  
+        try {
+          const result =await axios.get(`https://event-backend.isdemo.in/api/v1/generalsetting?venue_id=${venueId}`)
+       const data = result.data.data
+         const  latestEntry = data.reduce((latest, current) => {
+    if (!latest || new Date(current.created_at) > new Date(latest.created_at)) {
+      return current;
+    }
+    return latest;
+  }, null)
+          setLatestEntry(latestEntry)
+          setPublicKey(latestEntry.stripe_public_key)
+          setSecretKey(latestEntry.stripe_secret_key)
+        
+        }
+        catch {
+          
+  }
+
+
+
+
+
+
+      }
+      
+      useEffect(() => {
+           fetchKeys();
+      },[])
+
+
+
+
+
   return (
     <Elements stripe={stripePromise}>
       <EventDetails />

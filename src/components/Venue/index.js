@@ -37,6 +37,7 @@ const Venue = () => {
         // Make the API request using the encoded venueId
         const response = await axios.get(`https://event-backend.isdemo.in/api/v1/event?venue_id=${vid}`);
         console.log('API Response:', response.data);
+       console.log(vid,"tesing ===>>")
 
         setEventList(response.data.data);
       } catch (error) {
